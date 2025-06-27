@@ -12,6 +12,12 @@ import {useNavigate} from 'react-router-dom';
 const NavBar = observer(() => {
     const {user} = React.useContext(Context);
     const navigate = useNavigate();
+
+    const logOut = () => {
+      user.setUser({})
+      user.setIsAuth(false)
+    }
+
     return (
         <Navbar bg="dark" data-bs-theme="dark">
         <Container>
@@ -19,11 +25,11 @@ const NavBar = observer(() => {
           {user.isAuth?
           <Nav className="ml-auto">
             <Button variant={"outline-light"} onClick={() => navigate(ADMIN_ROUTE)}>Admin panel</Button>
-            <Button variant={"outline-light"} className="ms-4" onClick={() => navigate(LOGIN_ROUTE)}>Log out</Button>
+            <Button variant={"outline-light"} className="ms-4" onClick={()=>logOut()}>Log out</Button>
           </Nav>
           :
           <Nav className="ml-auto">
-            <Button variant="outline-light" onClick={ () => user.setIsAuth(true) }>Log in</Button>
+            <Button variant="outline-light" onClick={ () => navigate(LOGIN_ROUTE) }>Log in</Button>
           </Nav>}
         </Container>
       </Navbar>

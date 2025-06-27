@@ -38,7 +38,9 @@ class DeviceController {
 
     async getAll (req, res, next) {
         try {
-            let {brandId, typeId} = req.query;
+            let {brandId, typeId, limit, page} = req.query;
+            page = parseInt(page) || 1;
+            limit = parseInt(limit) || 9;
             let devices;
             page = page || 1;
             limit = limit || 9;
