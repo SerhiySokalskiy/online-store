@@ -31,3 +31,7 @@ export const fetchOneDevice = async (id) => {
     const {data} = await $host.get('api/device/'+id)
     return data
 }
+export const addRating = async (deviceId, rate) => {
+    const { data } = await $authHost.post('api/rating', { deviceId, rate });
+    return data;
+}

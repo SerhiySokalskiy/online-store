@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from "react-router-dom";
-import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../utils/consts";
+import { ADMIN_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../utils/consts";
 import {Button} from 'react-bootstrap';
 import { observer } from 'mobx-react-lite';
 import {useNavigate} from 'react-router-dom';
@@ -24,8 +24,12 @@ const NavBar = observer(() => {
             <NavLink style={{color:'white'}} to={SHOP_ROUTE}>TechnoStore</NavLink>
           {user.isAuth?
           <Nav className="ml-auto">
-            <Button variant={"outline-light"} onClick={() => navigate(ADMIN_ROUTE)}>Admin panel</Button>
-            <Button variant={"outline-light"} className="ms-4" onClick={()=>logOut()}>Log out</Button>
+            <Button variant={"outline-light"} className="ms-4" onClick={() => navigate(ADMIN_ROUTE)}>Admin panel</Button>
+            <Button variant={"outline-light"} className="ms-4" onClick={() => navigate(BASKET_ROUTE)}>Basket</Button>
+            <Button variant={"outline-light"} className="ms-4" onClick={()=>{
+              logOut()
+              navigate(SHOP_ROUTE)}
+            }>Log out</Button>
           </Nav>
           :
           <Nav className="ml-auto">
